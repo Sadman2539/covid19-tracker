@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID19 Data Tracker</title>
+    <!-- favicon  -->
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <!-- bootstrap css CDN link  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+
+<body class="bg-dark">
+    <!-- header part -->
+    <header>
+        <nav class="navbar navbar-light bg-secondary ">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="images/covid-update.png" alt="" width="60" height="48"
+                        class="d-inline-block align-text-top img-fluid">
+                    COVID19 Data Tracker
+                </a>
+
+                <!-- search box  -->
+                <form class="d-flex">
+                    <input class="form-control me-2 pe-5" id="search-field" type="search"
+                        placeholder="Search by country" aria-label="Search">
+                    <button class="btn btn-success" type="submit" onclick="loadCountryData()">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <!-- main part  -->
+    <main class="container-fluid mt-3 d-flex">
+        <!-- cards section  -->
+        <!-- worldwide section  -->
+        <section class="w-50 text-center">
+            <h1 class=" text-white">Worldwide</h1>
+            <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 col-md-12 col-lg-12 g-4 mt-2">
+                <div class="col">
+                    <div class="card text-white bg-primary" style="max-width: 18rem;">
+                        <div class="card-header">
+                            <h5>Global Confirmed Cases</h5>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title p-3" id="global-confirmed"></h1>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                        <div class="card-header">
+                            <h5>Globally Total Recovered </h5>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title p-3" id="total-recovered"></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 col-md-12 col-lg-12 g-4 mt-2">
+                <div class="col">
+                    <div class="card text-white bg-danger" style="max-width: 18rem;">
+                        <div class="card-header">
+                            <h5>GLobal Death Cases</h5>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title p-3" id="global-death"></h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card text-white bg-info " style="max-width: 18rem;">
+                        <div class="card-header">
+                            <h5>GLobal New Cases</h5>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title text-center p-3" id="global-new-cases"></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- country section  -->
+        <section class="w-50 text-center">
+            <h1 class=" text-white" id="country-name">Country</h1>
+            <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 col-md-12 col-lg-12 g-4 mt-2">
+                <div class="col">
+                    <div class="card text-white bg-primary" style="max-width: 18rem;">
+                        <div class="card-header">
+                            <h5>Total Confirmed Cases</h5>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title p-3" id="confirmed-cases">0</h1>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                        <div class="card-header">
+                            <h5>Total Recovered</h5>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title p-3" id="total-recovered">0</h1>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 col-md-12 col-lg-12 g-4 mt-2">
+                <div class="col">
+                    <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+                        <div class="card-header">
+                            <h5>Total Deaths</h5>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title p-3" id="total-deaths">0</h1>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                        <div class="card-header">
+                            <h5>New Cases</h5>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title p-3" id="new-cases">0</h1>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- bootstrap JS CDN link  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+    <!-- JS file link  -->
+    <script src="scripts.js"></script>
+</body>
+
+</html>
